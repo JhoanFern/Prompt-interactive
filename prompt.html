@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effective AI Prompting - The CLEARER Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .hub-button {
+            transition: all 0.3s ease;
+        }
+        .hub-button:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .nav-button {
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background-color: #e5e7eb;
+            color: #374151;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #d1d5db;
+        }
+        .nav-button.primary {
+            background-color: #EF4444;
+            color: white;
+        }
+        .nav-button.primary:hover {
+            background-color: #DC2626;
+        }
+        .ai-output {
+            background-color: #f3f4f6;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 0.75rem;
+            border: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div id="presentation" class="w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden">
+        
+        <!-- Slide 1: Title -->
+        <div id="slide1" class="slide active p-8 md:p-16 text-center">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9e_-8Co9l4sV_3b_Yl2Jg2I-2p-y-8T-8-A&s" alt="Picnic Logo" class="h-16 mx-auto mb-6">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Writing a Prompt</h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8">Tips & Tricks for Better Results</p>
+            <button onclick="showSlide('slide_hook')" class="nav-button primary text-lg">Start</button>
+        </div>
+
+        <!-- Slide 2: The Hook -->
+        <div id="slide_hook" class="slide p-8 md:p-12">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">The AI Output Lottery</h2>
+            <p class="text-center text-gray-600 mb-8">Why does the same AI give genius answers one minute and useless ones the next? <br>The biggest factor is your prompt.</p>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h4 class="font-bold text-lg mb-2 text-red-800">Vague Prompt 👎</h4>
+                    <p class="font-mono text-red-700">"Tell me about building permits."</p>
+                    <div class="ai-output text-red-900"><strong>AI Output:</strong> "A building permit is an official approval issued by a local government agency that allows you or your contractor to proceed with a construction or remodeling project..."</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h4 class="font-bold text-lg mb-2 text-green-800">Crafted Prompt 👍</h4>
+                    <p class="font-mono text-green-700">"List the key steps to apply for a building permit for a new 5,000 sqm manual fulfillment center in the Netherlands."</p>
+                    <div class="ai-output text-green-900"><strong>AI Output:</strong> "To get a building permit for a 5,000 sqm FC in the Netherlands, you'll need to: 1. **Submit an 'Omgevingsvergunning' application**... 2. **Provide detailed architectural drawings**... 3. **Include a fire safety report**..."</div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button onclick="showSlide('slide_clearer_hub')" class="nav-button primary">Learn the Framework</button>
+            </div>
+        </div>
+
+        <!-- Slide 3: CLEARER Hub -->
+        <div id="slide_clearer_hub" class="slide p-8 md:p-12">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">The CLEARER Framework</h2>
+            <p class="text-center text-gray-600 mb-8">A memorable path to brighter outcomes.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div onclick="showSlide('slide_c')" class="hub-button bg-red-100 p-6 rounded-lg shadow-md cursor-pointer border border-red-200 hover:border-red-500">
+                    <h3 class="text-2xl font-bold text-red-700">C</h3><p class="text-red-800 font-semibold">Context</p>
+                </div>
+                <div onclick="showSlide('slide_l')" class="hub-button bg-orange-100 p-6 rounded-lg shadow-md cursor-pointer border border-orange-200 hover:border-orange-500">
+                    <h3 class="text-2xl font-bold text-orange-700">L</h3><p class="text-orange-800 font-semibold">List Instructions</p>
+                </div>
+                <div onclick="showSlide('slide_e1')" class="hub-button bg-yellow-100 p-6 rounded-lg shadow-md cursor-pointer border border-yellow-200 hover:border-yellow-500">
+                    <h3 class="text-2xl font-bold text-yellow-700">E</h3><p class="text-yellow-800 font-semibold">Examples</p>
+                </div>
+                <div onclick="showSlide('slide_a')" class="hub-button bg-green-100 p-6 rounded-lg shadow-md cursor-pointer border border-green-200 hover:border-green-500">
+                    <h3 class="text-2xl font-bold text-green-700">A</h3><p class="text-green-800 font-semibold">Ask to "Think"</p>
+                </div>
+                <div onclick="showSlide('slide_r1')" class="hub-button bg-blue-100 p-6 rounded-lg shadow-md cursor-pointer border border-blue-200 hover:border-blue-500">
+                    <h3 class="text-2xl font-bold text-blue-700">R</h3><p class="text-blue-800 font-semibold">Refine & Iterate</p>
+                </div>
+                <div onclick="showSlide('slide_e2')" class="hub-button bg-indigo-100 p-6 rounded-lg shadow-md cursor-pointer border border-indigo-200 hover:border-indigo-500">
+                    <h3 class="text-2xl font-bold text-indigo-700">E</h3><p class="text-indigo-800 font-semibold">Establish Constraints</p>
+                </div>
+                <div onclick="showSlide('slide_r2')" class="hub-button bg-purple-100 p-6 rounded-lg shadow-md cursor-pointer border border-purple-200 hover:border-purple-500">
+                    <h3 class="text-2xl font-bold text-purple-700">R</h3><p class="text-purple-800 font-semibold">Role</p>
+                </div>
+                <div onclick="showSlide('slide_secret_weapon')" class="hub-button bg-gray-200 p-6 rounded-lg shadow-md cursor-pointer border border-gray-300 hover:border-gray-500">
+                    <h3 class="text-2xl font-bold text-gray-700">🚀</h3><p class="text-gray-800 font-semibold">Secret Weapon</p>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button onclick="showSlide('slide_takeaways')" class="nav-button primary">Key Takeaways</button>
+            </div>
+        </div>
+
+        <!-- Individual Concept Slides -->
+        <div id="slide_c" class="slide p-8 md:p-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-red-500 font-bold text-3xl">C</span>ontext is Key</h2>
+            <p class="text-gray-600 mb-6">Set the scene. Provide background, define the audience, and clarify the situation.</p>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h4 class="font-bold text-lg mb-2 text-red-800">Bad 👎</h4>
+                    <p class="text-red-700 font-mono">"Explain the HVAC system requirements."</p>
+                    <div class="ai-output text-red-900"><strong>AI Output:</strong> "HVAC systems require a certain airflow, measured in CFM. The system must also have appropriate ductwork, a thermostat, and a power source..."</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h4 class="font-bold text-lg mb-2 text-green-800">Good 👍</h4>
+                    <p class="text-green-700 font-mono">"You are a senior mechanical engineer. Explain the HVAC requirements for our new 10,000 sqm fulfillment center to the finance team. Focus on the 'why' behind the specs (e.g., temperature control for groceries, energy efficiency) and avoid overly technical jargon."</p>
+                    <div class="ai-output text-green-900"><strong>AI Output:</strong> "For our new FC, the HVAC system is crucial for two main financial reasons. First, **product integrity**: we need different temperature zones, like a specific range for fresh produce and another for chilled goods. Failing to maintain these temperatures risks inventory loss, which is a direct hit to our bottom line. Second, **operational cost**: we are choosing energy-efficient units. While they might have a slightly higher initial cost, they will significantly lower our long-term electricity bills, leading to a faster return on investment."</div>
+                </div>
+            </div>
+            <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
+        </div>
+
+        <div id="slide_l" class="slide p-8 md:p-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-orange-500 font-bold text-3xl">L</span>ist Instructions</h2>
+            <p class="text-gray-600 mb-6">Be specific and explicit. If a task has multiple steps, list them clearly.</p>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h4 class="font-bold text-lg mb-2 text-red-800">Bad 👎</h4>
+                    <p class="text-red-700 font-mono">"What should I check for a new building?"</p>
+                    <div class="ai-output text-red-900"><strong>AI Output:</strong> "You should check the foundation, roof, walls, plumbing, and electrical systems. Also check for pests and the condition of the windows."</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h4 class="font-bold text-lg mb-2 text-green-800">Good 👍</h4>
+                    <p class="text-green-700 font-mono">"Create a due diligence checklist for a potential new hub location. Break the list into three sections: 1) Structural Integrity, 2) Utility Connections (power, water, internet), and 3) Permitting & Zoning. Under each section, list at least 3 key items to verify."</p>
+                    <div class="ai-output text-green-900">
+                        <strong>AI Output:</strong><br>
+                        **1. Structural Integrity:**<br> - Check for cracks in foundation...<br>
+                        **2. Utility Connections:**<br> - Verify 3-phase power capacity...<br>
+                        **3. Permitting & Zoning:**<br> - Confirm commercial zoning...
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
+        </div>
+
+        <div id="slide_e1" class="slide p-8 md:p-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-yellow-500 font-bold text-3xl">E</span>xamples (Show, Don't Tell)</h2>
+            <p class="text-gray-600 mb-6">Provide examples of your desired output style, tone, or format. This is called "few-shot prompting".</p>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h4 class="font-bold text-lg mb-2 text-red-800">Bad 👎</h4>
+                    <p class="text-red-700 font-mono">"Write an email to the contractor about the delay."</p>
+                    <div class="ai-output text-red-900"><strong>AI Output:</strong> "Subject: Delay. Hi, The project is delayed. Please advise. Thanks."</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h4 class="font-bold text-lg mb-2 text-green-800">Good 👍</h4>
+                    <p class="text-green-700 font-mono">"Draft a formal email to our primary electrical contractor about a 2-week delay in the delivery of switchgear. Maintain a professional and collaborative tone. For example: 'We're writing to provide an update...' not 'You need to be aware...'"</p>
+                    <div class="ai-output text-green-900"><strong>AI Output:</strong> "Subject: Update on Switchgear Delivery for Project FC12. Hi [Contractor Name], We're writing to provide an update on the switchgear delivery for the FC12 project. We've been notified of a 2-week delay... Let's connect to discuss any impact..."</div>
+                </div>
+            </div>
+            <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
+        </div>
+
+        <div id="slide_a" class="slide p-8 md:p-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-green-500 font-bold text-3xl">A</span>sk the AI to "Think"</h2>
+            <p class="text-gray-600 mb-6">For complex tasks, instruct the AI to reason step-by-step before giving the final answer. This improves accuracy.</p>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h4 class="font-bold text-lg mb-2 text-red-800">Bad 👎</h4>
+                    <p class="text-red-700 font-mono">"Should we install solar panels on the new FC in Utrecht?"</p>
+                    <div class="ai-output text-red-900"><strong>AI Output:</strong> "Yes, installing solar panels is a good idea for the environment and can save money."</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h4 class="font-bold text-lg mb-2 text-green-800">Good 👍</h4>
+                    <p class="text-green-700 font-mono">"Break down the pros and cons of installing a solar panel array on our new 15,000 sqm fulfillment center in Utrecht. Think step-by-step: analyze initial CAPEX, available government subsidies, average annual sunlight, projected energy cost savings, and the estimated payback period. Then, conclude with a final recommendation."</p>
+                    <div class="ai-output text-green-900"><strong>AI Output:</strong> "Okay, here's a step-by-step analysis... **1. CAPEX:** Approx. €1.5M. **2. Subsidies:** SDE++ could cover X%. **3. Payback:** Estimated 7-9 years. **Conclusion:** Given the long-term savings and subsidies, it is a financially viable investment."</div>
+                </div>
+            </div>
+            <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
+        </div>
+
+        <div id="slide_r1" class="slide p-8 md:p-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-blue-500 font-bold text-3xl">R</span>efine & Iterate</h2>
+            <p class="text-gray-600 mb-6">Treat prompting as a conversation. Your first prompt is rarely your last. Refine based on the output.</p>
+            <div class="bg-gray-100 p-6 rounded-lg font-mono text-sm">
+                <p><strong>You:</strong> "Create a project plan for a new hub fit-out."</p>
+                <p class="text-gray-500 mt-2"><em>&rarr; AI gives a generic plan with phases like 'Planning', 'Execution', 'Closing'.</em></p>
+                <p class="mt-4"><strong>You (Refined):</strong> "That's a good start. Now, break down the 'Execution' phase into more detailed sub-tasks specific to our fit-outs, like 'Flooring', 'Shelving Installation', and 'Electrical'. Add a column for estimated duration in days for a 2,000 sqm hub."</p>
+            </div>
+            <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
+        </div>
+        
+        <div id="slide_e2" class="slide p-8 md:p-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-indigo-500 font-bold text-3xl">E</span>stablish Constraints</h2>
+            <p class="text-gray-600 mb-6">Guide the AI by setting boundaries for format, length, style, and what to include or exclude.</p>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h4 class="font-bold text-lg mb-2 text-red-800">Bad 👎</h4>
+                    <p class="text-red-700 font-mono">"Summarize the building code."</p>
+                    <div class="ai-output text-red-900"><strong>AI Output:</strong> "The Dutch Building Code (Bouwbesluit 2012) is a comprehensive set of regulations for all construction in the Netherlands, covering safety, health, usability, energy efficiency, and the environment..." (continues for 10 pages)</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h4 class="font-bold text-lg mb-2 text-green-800">Good 👍</h4>
+                    <p class="text-green-700 font-mono">"Summarize the attached 'Bouwbesluit 2012' document, focusing only on the fire safety regulations for commercial warehouses over 5,000 sqm. Present the summary as a bulleted list. The entire summary must be under 300 words."</p>
+                    <div class="ai-output text-green-900"><strong>AI Output:</strong> "Key fire safety points for large warehouses from Bouwbesluit 2012: • Must have fire compartments no larger than 2,500m². • Requires an automatic fire sprinkler system. • Evacuation routes must be clearly marked..."</div>
+                </div>
+            </div>
+            <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
+        </div>
+
+        <div id="slide_r2" class="slide p-8 md:p-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-purple-500 font-bold text-3xl">R</span>ole (Define the Persona)</h2>
+            <p class="text-gray-600 mb-6">Assigning a role helps the AI adopt the appropriate tone, style, and knowledge base.</p>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h4 class="font-bold text-lg mb-2 text-red-800">Bad 👎</h4>
+                    <p class="text-red-700 font-mono">"Critique this project plan."</p>
+                    <div class="ai-output text-red-900"><strong>AI Output:</strong> "The project plan seems okay. The timeline is a bit short. The budget could be higher. The tasks are listed."</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h4 class="font-bold text-lg mb-2 text-green-800">Good 👍</h4>
+                    <p class="text-green-700 font-mono">"Act as a devil's advocate. I am providing a project plan for the new FC10 fit-out. Your task is to critique it by identifying three potential risks related to supply chain or contractor availability that I may have overlooked. Be critical but constructive."</p>
+                    <div class="ai-output text-green-900"><strong>AI Output:</strong> "Constructive critique of the FC10 plan: **1. Supply Chain Risk:** The plan relies on a single supplier for shelving; a delay there could halt the entire project. **2. Contractor Risk:** Scheduling electrical work before HVAC is complete could lead to rework... **3. ...**"</div>
+                </div>
+            </div>
+            <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
+        </div>
+
+        <!-- Slide: The Secret Weapon -->
+        <div id="slide_secret_weapon" class="slide p-8 md:p-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">The Secret Weapon 🚀</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="font-bold text-xl text-gray-700 mb-2">Ask the AI for help!</h3>
+                    <p class="text-gray-600">If you're ever stuck or your results aren't good enough, ask the AI to help you improve your own prompt. It's surprisingly effective.</p>
+                    <div class="bg-gray-100 p-4 mt-2 rounded-lg font-mono text-sm">
+                        <p><strong>Your Prompt for the AI:</strong> "How can I improve my prompt to get a more detailed risk analysis for a construction project?"</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
+        </div>
+
+        <!-- Slide: Takeaways -->
+        <div id="slide_takeaways" class="slide p-8 md:p-16 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Your Prompting Playbook</h2>
+            <div class="text-left max-w-2xl mx-auto space-y-4 text-lg">
+                <p><strong class="text-red-500">Precision Unlocks Potential.</strong> Think surgeon, not sledgehammer. The more thoughtfully you craft your prompt, the deeper you tap into the AI's capabilities.</p>
+                <p><strong class="text-blue-500">Context is Your Compass.</strong> Without it, the AI is navigating blind. Provide the 'who, what, why' to guide it to your desired destination.</p>
+                <p><strong class="text-green-500">Structure Shapes Success.</strong> Defining the format and constraints ensures you get what you need, in the way you need it.</p>
+                <p><strong class="text-purple-500">Iterate, Don't Abdicate.</strong> Prompting is a skill. If the first result isn't perfect, refine your instructions. Don't just give up.</p>
+            </div>
+            <div class="mt-8 border-t pt-6 max-w-2xl mx-auto">
+                <p class="text-xl text-gray-700 italic">"A vague prompt is like an IKEA manual with no pictures. You'll get a result, but it won't be the <strong class="text-gray-900">bookshelf</strong> you wanted, and you'll have screws left over."</p>
+            </div>
+            <div class="mt-10">
+                <button onclick="showSlide('slide1')" class="nav-button">Start Over</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlide = 'slide1';
+
+        function showSlide(slideId) {
+            const currentEl = document.getElementById(currentSlide);
+            const nextEl = document.getElementById(slideId);
+            
+            if (currentEl) currentEl.classList.remove('active');
+            if (nextEl) {
+                nextEl.classList.add('active');
+                currentSlide = slideId;
+            }
+        }
+    </script>
+</body>
+</html>
