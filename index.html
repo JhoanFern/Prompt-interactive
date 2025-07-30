@@ -11,6 +11,10 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
+        /* Added position relative to anchor the footer */
+        #presentation {
+            position: relative;
+        }
         .slide {
             display: none;
             animation: fadeIn 0.5s;
@@ -61,14 +65,14 @@
 
     <div id="presentation" class="w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden">
         
-        <div id="slide1" class="slide active p-8 md:p-16 text-center">
+        <div id="slide1" class="slide active p-8 md:p-16 pb-20 text-center">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9e_-8Co9l4sV_3b_Yl2Jg2I-2p-y-8T-8-A&s" alt="Picnic Logo" class="h-16 mx-auto mb-6">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Writing a Prompt</h1>
             <p class="text-xl md:text-2xl text-gray-600 mb-8">Tips & Tricks for Better Results</p>
             <button onclick="showSlide('slide_hook')" class="nav-button primary text-lg">Start</button>
         </div>
 
-        <div id="slide_hook" class="slide p-8 md:p-12">
+        <div id="slide_hook" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">The AI Output Lottery</h2>
             <p class="text-center text-gray-600 mb-8">Why does the same AI give genius answers one minute and useless ones the next? <br>The biggest factor is your prompt.</p>
             <div class="grid md:grid-cols-2 gap-6 text-sm">
@@ -88,7 +92,7 @@
             </div>
         </div>
 
-        <div id="slide_clearer_hub" class="slide p-8 md:p-12">
+        <div id="slide_clearer_hub" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">The CLEARER Framework</h2>
             <p class="text-center text-gray-600 mb-8">A memorable path to brighter outcomes.</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -122,7 +126,7 @@
             </div>
         </div>
 
-        <div id="slide_c" class="slide p-8 md:p-12">
+        <div id="slide_c" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-red-500 font-bold text-3xl">C</span>ontext is Key</h2>
             <p class="text-gray-600 mb-6">Set the scene. Provide background, define the audience, and clarify the situation.</p>
             <div class="grid md:grid-cols-2 gap-6 text-sm">
@@ -140,7 +144,7 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <div id="slide_l" class="slide p-8 md:p-12">
+        <div id="slide_l" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-orange-500 font-bold text-3xl">L</span>ist Instructions</h2>
             <p class="text-gray-600 mb-6">Be specific and explicit. If a task has multiple steps, list them clearly.</p>
             <div class="grid md:grid-cols-2 gap-6 text-sm">
@@ -163,7 +167,7 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <div id="slide_e1" class="slide p-8 md:p-12">
+        <div id="slide_e1" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-yellow-500 font-bold text-3xl">E</span>xamples (Show, Don't Tell)</h2>
             <p class="text-gray-600 mb-6">Provide examples of your desired output style, tone, or format. This is called "few-shot prompting".</p>
             <div class="grid md:grid-cols-2 gap-6 text-sm">
@@ -181,7 +185,7 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <div id="slide_a" class="slide p-8 md:p-12">
+        <div id="slide_a" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-green-500 font-bold text-3xl">A</span>sk the AI to "Think"</h2>
             <p class="text-gray-600 mb-6">For complex tasks, instruct the AI to reason step-by-step before giving the final answer. This improves accuracy.</p>
             <div class="grid md:grid-cols-2 gap-6 text-sm">
@@ -199,7 +203,7 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <div id="slide_r1" class="slide p-8 md:p-12">
+        <div id="slide_r1" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-blue-500 font-bold text-3xl">R</span>efine & Iterate</h2>
             <p class="text-gray-600 mb-6">Treat prompting as a conversation. Your first prompt is rarely your last. Refine based on the output.</p>
             <div class="bg-gray-100 p-6 rounded-lg font-mono text-sm">
@@ -210,7 +214,7 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
         
-        <div id="slide_e2" class="slide p-8 md:p-12">
+        <div id="slide_e2" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-indigo-500 font-bold text-3xl">E</span>stablish Constraints</h2>
             <p class="text-gray-600 mb-6">Guide the AI by setting boundaries for format, length, style, and what to include or exclude.</p>
             <div class="grid md:grid-cols-2 gap-6 text-sm">
@@ -228,7 +232,7 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <div id="slide_r2" class="slide p-8 md:p-12">
+        <div id="slide_r2" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-purple-500 font-bold text-3xl">R</span>ole (Define the Persona)</h2>
             <p class="text-gray-600 mb-6">Assigning a role helps the AI adopt the appropriate tone, style, and knowledge base.</p>
             <div class="grid md:grid-cols-2 gap-6 text-sm">
@@ -246,7 +250,7 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <div id="slide_secret_weapon" class="slide p-8 md:p-12">
+        <div id="slide_secret_weapon" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-3xl font-bold text-gray-800 mb-4">The Secret Weapon 🚀</h2>
             <div class="space-y-6">
                 <div>
@@ -260,7 +264,7 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <div id="slide_takeaways" class="slide p-8 md:p-16 text-center">
+        <div id="slide_takeaways" class="slide p-8 md:p-16 pb-24 text-center">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Your Prompting Playbook</h2>
             <div class="text-left max-w-2xl mx-auto space-y-4 text-lg">
                 <p><strong class="text-red-500">Precision Unlocks Potential.</strong> Think surgeon, not sledgehammer. The more thoughtfully you craft your prompt, the deeper you tap into the AI's capabilities.</p>
@@ -277,7 +281,7 @@
             </div>
         </div>
         
-        <div id="slide_prompt_creator" class="slide p-8 md:p-12">
+        <div id="slide_prompt_creator" class="slide p-8 md:p-12 pb-20">
             <h2 class="text-3xl font-bold text-gray-800 mb-2">Your Prompt Creator 📋</h2>
             <p class="text-gray-600 mb-6">Copy this entire template into your AI chat. Edit only the "Prompt Workbench" section at the top with your request.</p>
             <textarea id="promptText" class="w-full h-72 font-mono text-xs bg-gray-50 p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500" readonly></textarea>
@@ -285,6 +289,11 @@
                 <button id="copyButton" onclick="copyPrompt()" class="nav-button primary">Copy Template</button>
                 <button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button>
             </div>
+        </div>
+
+        <div id="footer-branding" class="absolute bottom-0 right-0 p-4 flex items-center space-x-3 pointer-events-none">
+            <p class="text-xs text-gray-400 font-semibold">Building Infrastructure</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Picnic_logo.svg/1200px-Picnic_logo.svg.png" alt="Picnic Logo" class="h-5">
         </div>
 
     </div>
