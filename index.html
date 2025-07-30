@@ -36,7 +36,7 @@
             background-color: #e5e7eb;
             color: #374151;
             font-weight: 500;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
         .nav-button:hover {
             background-color: #d1d5db;
@@ -61,7 +61,6 @@
 
     <div id="presentation" class="w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden">
         
-        <!-- Slide 1: Title -->
         <div id="slide1" class="slide active p-8 md:p-16 text-center">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9e_-8Co9l4sV_3b_Yl2Jg2I-2p-y-8T-8-A&s" alt="Picnic Logo" class="h-16 mx-auto mb-6">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Writing a Prompt</h1>
@@ -69,7 +68,6 @@
             <button onclick="showSlide('slide_hook')" class="nav-button primary text-lg">Start</button>
         </div>
 
-        <!-- Slide 2: The Hook -->
         <div id="slide_hook" class="slide p-8 md:p-12">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">The AI Output Lottery</h2>
             <p class="text-center text-gray-600 mb-8">Why does the same AI give genius answers one minute and useless ones the next? <br>The biggest factor is your prompt.</p>
@@ -90,7 +88,6 @@
             </div>
         </div>
 
-        <!-- Slide 3: CLEARER Hub -->
         <div id="slide_clearer_hub" class="slide p-8 md:p-12">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">The CLEARER Framework</h2>
             <p class="text-center text-gray-600 mb-8">A memorable path to brighter outcomes.</p>
@@ -125,7 +122,6 @@
             </div>
         </div>
 
-        <!-- Individual Concept Slides -->
         <div id="slide_c" class="slide p-8 md:p-12">
             <h2 class="text-2xl font-bold text-gray-800 mb-1"><span class="text-red-500 font-bold text-3xl">C</span>ontext is Key</h2>
             <p class="text-gray-600 mb-6">Set the scene. Provide background, define the audience, and clarify the situation.</p>
@@ -250,7 +246,6 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <!-- Slide: The Secret Weapon -->
         <div id="slide_secret_weapon" class="slide p-8 md:p-12">
             <h2 class="text-3xl font-bold text-gray-800 mb-4">The Secret Weapon 🚀</h2>
             <div class="space-y-6">
@@ -265,7 +260,6 @@
             <div class="mt-8"><button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button></div>
         </div>
 
-        <!-- Slide: Takeaways -->
         <div id="slide_takeaways" class="slide p-8 md:p-16 text-center">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Your Prompting Playbook</h2>
             <div class="text-left max-w-2xl mx-auto space-y-4 text-lg">
@@ -277,8 +271,19 @@
             <div class="mt-8 border-t pt-6 max-w-2xl mx-auto">
                 <p class="text-xl text-gray-700 italic">"A vague prompt is like an IKEA manual with no pictures. You'll get a result, but it won't be the <strong class="text-gray-900">bookshelf</strong> you wanted, and you'll have screws left over."</p>
             </div>
-            <div class="mt-10">
-                <button onclick="showSlide('slide1')" class="nav-button">Start Over</button>
+            <div class="mt-10 flex justify-center items-center space-x-4">
+                <button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button>
+                <button onclick="showSlide('slide_prompt_creator')" class="nav-button primary">Use the Prompt Creator</button>
+            </div>
+        </div>
+        
+        <div id="slide_prompt_creator" class="slide p-8 md:p-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Your Prompt Creator 📋</h2>
+            <p class="text-gray-600 mb-6">Copy this entire template into your AI chat. Edit only the "Prompt Workbench" section at the top with your request.</p>
+            <textarea id="promptText" class="w-full h-72 font-mono text-xs bg-gray-50 p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500" readonly></textarea>
+            <div class="mt-6 flex justify-between items-center">
+                <button id="copyButton" onclick="copyPrompt()" class="nav-button primary">Copy Template</button>
+                <button onclick="showSlide('slide_clearer_hub')" class="nav-button">Back to Hub</button>
             </div>
         </div>
 
@@ -286,6 +291,131 @@
 
     <script>
         let currentSlide = 'slide1';
+
+        const promptCreatorText = `
+Part 1: The Prompt Workbench (Your Workspace)
+(This is the only section you need to edit. Write your full request below. Use the guide in Part 2 to help you write the best possible prompt.)
+
+Example:
+You are an expert construction project manager advising the Picnic BI team.
+Instructions:
+1. Draft an email to a landlord for a new hub in Germany.
+2. Inform them we have completed our initial Due Diligence.
+3. Request a meeting next week to discuss the lease agreement.
+Constraints:
+The email must be in English. The tone should be professional but friendly. Keep it under 150 words.
+
+(Do not edit anything below this line. The rest of this document provides the framework for writing your prompt and gives the AI the context it needs.)
+---
+Part 2: The Prompt Crafting Guide 
+(Use this CLEARER framework as your guide when writing your request in the Workbench above.)
+
+C: Context is Key
+Why it Matters: The AI knows nothing about Picnic unless you tell it. The detailed "Knowledge Base" in Part 3 provides this foundation automatically. You provide the immediate context for your specific task.
+BI Team Example: The AI will already know what "DD" means because it's in the Knowledge Base. Your task-specific context might be "We've just received the DD report for the Berlin Hub."
+
+L: List Instructions
+Why it Matters: Vague requests get vague answers. A numbered list forces the AI to address every part of your task systematically.
+BI Team Example: Instead of "Help with a contractor email," use "1. Draft an email to Contractor X. 2. State that we are invoking the delay clause. 3. Request a revised timeline by Friday."
+
+E: Examples
+Why it Matters: Showing is more powerful than telling. An example is the fastest way to align the AI with your expectations for tone, format, and style.
+BI Team Example: When asking for a project update, you could add: "Example Output: 'Subject: FC12 Update. Electrical: 85% complete. Sprinklers: On schedule.'"
+
+A: Ask the AI to "Think"
+Why it Matters: For complex tasks, you want the AI to reason logically. The instruction to "think step-by-step" is automatically included at the end of Part 3 to ensure high-quality reasoning on every task.
+
+R: Refine & Iterate
+Why it Matters: Your first prompt is rarely your last. Use the AI's first response as a draft, and then provide feedback to improve it.
+BI Team Example: After the AI drafts a landlord email, you can reply: "Good, now rewrite that, but make it sound more urgent."
+
+E: Establish Constraints
+Why it Matters: Without boundaries, you get responses that are too long, in the wrong format, or in the wrong tone. Constraints are your rules.
+BI Team Example: "Constraints: The summary must be a bulleted list. Keep it under 200 words. The tone must be factual. Do not mention any budget figures."
+
+R: Role
+Why it Matters: Assigning a persona primes the AI to access the right knowledge and style. The default expert role is set in Part 3, but you can override it in the workbench for specific tasks.
+BI Team Example: You could start your prompt with "You are a junior analyst summarizing this for a manager" to get a different style of response.
+---
+Part 3: AI's Knowledge Base & Instructions (The AI's Brain)
+
+CORE INSTRUCTIONS FOR AI: Your role is an expert consultant for the Picnic Building Infrastructure (BI) team. Your primary task is to fulfill the user's request from the "Prompt Workbench" in Part 1. You must use this extensive knowledge base to inform your response, and you must think step-by-step before generating the final output.
+
+KNOWLEDGE BASE: PICNIC BUILDING INFRASTRUCTURE
+SECTION A: HIGH-LEVEL STRATEGIC CONTEXT
+Mission: Picnic is on track to become a European champion in the online grocery market.
+Business Model: The model is profitable in the Netherlands and NRW (Germany). It is considered almost impossible to replicate due to a unique combination of:
+- Full stack Fulfillment Center (FC) automation.
+- A proprietary fleet of Electric Picnic Vehicles.
+- An advanced, tech-driven sourcing system.
+- All elements are orchestrated by Picnic's own central technology platform.
+
+SECTION B: PROJECT LIFECYCLE & APPROVAL PROCESS
+Formal Stages: The BI team guides projects through a structured lifecycle: "Strategic plan" -> "Building search" -> "Building approval & signing" -> "Building and fit-out // planning & install" -> "Launch & ramp-up" -> "Normal operation".
+Core Process Flow: The five main pillars of the team's work are: "Building search & contracting" -> "Permit & fit-out" -> "Equipment" -> "Maintain & support" -> "Rental contract mgt".
+Approval Gates: Key decisions are made by a "Steering" group, which must "Approve business case incl. capex budget" and "Approve initial layout" before projects can proceed.
+
+SECTION C: DETAILED BI TEAM TASKS (FULFILLMENT CENTER PROCESS)
+The BI team's ownership is extensive across the project phases:
+Phase 1: Building Search & Due Diligence
+- Perform Due Diligence (DD) on the Building (reality vs. Picnic standards), Permit, and Technical aspects.
+- Deliver the capex budget for building-specific fit-out and equipment.
+Phase 2: Building and Fit-Out Planning
+- Guide the Build-to-Suit (BTS) process, including developer iterations.
+- Manage the permit application process.
+- Develop and freeze the detailed layout, technical fitout, and operational fitout plans.
+- Create detailed time planning and cost planning.
+- Oversee services and equipment procurement.
+Phase 3: Building and Fit-Out Installation
+- Lead construction meetings, prepare the site, and manage contractor alignment.
+- Handle site & safety management and all regulatory form handling.
+- Manage ordering & delivery of equipment, including collision protection and branding.
+- Secure all necessary expert sign-offs and ensure safety features (e.g., fire extinguishers, signs, safety maps) are ready for go-live.
+Phase 4: Launch, Handover & Operation
+- Fix any start-up snags and provide ramp-up support.
+- Prepare and execute a formal handover to Operations and Facility Management.
+- Deliver all building documentation, manuals, emergency guides, and manage asset management.
+- In normal operation, the team manages fit-out changes, extension projects, and incident Root Cause Analysis (RCA).
+
+SECTION D: PROCESS DISTINCTIONS (HUB PROCESS)
+The process for smaller Hubs is designed for speed and standardization:
+- The BI team delivers a "standard building description (MVP approach)".
+- The team provides a "capex budget builder" and owns standard cost assumptions.
+- The BI team owns the "framework contracts and buying procedures" for services and equipment to streamline procurement.
+- For non-standard conditions, the team acts as an expert "sparring partner" to find solutions.
+
+SECTION E: ORGANIZATIONAL STRUCTURE (CAPABILITIES VS. DELIVERY)
+The BI team is organized to combine deep knowledge with powerful execution:
+- Capabilities (Central): Defines HOW work gets done. This central team creates the standards, plans, and knowledge base.
+- Delivery (National/Regional): Manages WHAT gets done and WHEN. These DE/NL/FR teams handle the on-the-ground fit-out installation and launch.
+
+SECTION F: DETAILED SCOPE OF CAPABILITY TEAMS
+- (new) Building: Responsible for building standards, design support, fit-out cost/layout planning, and managing regulations, permits, and subsidies.
+- Services: Responsible for standards related to cooling, electrical, air, fire safety, and construction elements like mezzanines.
+- Integration: Responsible for layouts, fit-out standards, integrated (3D) design, (4D) planning, project management, and final installation, commissioning, & testing.
+- Equipment: Responsible for charging infrastructure, camera systems, and all distribution and fulfilment hardware (e.g., shelving, flow racks, wrappers, bagging machines).
+- Facilities: Responsible for energy, cleaning/waste, security, and the management of devices and consumables.
+
+SECTION G: KEY TERMINOLOGY
+- FC: Fulfillment Center.
+- Hub: A smaller logistics building.
+- DD: Due Diligence.
+- BTS: Build-to-Suit.
+- RCA: Root Cause Analysis.
+- MVP: Minimum Viable Product.
+- TL: Team Lead.
+- FL: Fit-out Lead.
+- FM: Facility Manager.
+
+FINAL INSTRUCTION FOR AI: Before you generate the response, think step-by-step to fulfill the user's request from the Prompt Workbench. Your response must be deeply informed by this knowledge base and adhere to all instructions and constraints.
+`;
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const promptTextArea = document.getElementById('promptText');
+            if (promptTextArea) {
+                promptTextArea.value = promptCreatorText.trim();
+            }
+        });
 
         function showSlide(slideId) {
             const currentEl = document.getElementById(currentSlide);
@@ -296,6 +426,26 @@
                 nextEl.classList.add('active');
                 currentSlide = slideId;
             }
+        }
+
+        function copyPrompt() {
+            const textArea = document.getElementById('promptText');
+            const copyButton = document.getElementById('copyButton');
+            
+            navigator.clipboard.writeText(textArea.value).then(() => {
+                copyButton.textContent = 'Copied!';
+                copyButton.classList.remove('primary', 'bg-red-500');
+                copyButton.classList.add('bg-green-500');
+
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Template';
+                    copyButton.classList.remove('bg-green-500');
+                    copyButton.classList.add('primary');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('Failed to copy. Please select the text and copy it manually.');
+            });
         }
     </script>
 </body>
